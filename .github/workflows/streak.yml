@@ -19,8 +19,10 @@ jobs:
 
       - name: Commit & Push
         run: |
-          git config --global user.name "Anurag"
-          git config --global user.email "anuraggaur29@gmail.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Daily auto commit ✨"
-          git push
+          git commit -m "Daily auto commit ✨" || echo "No changes"
+          git push origin main || echo "Push failed"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
